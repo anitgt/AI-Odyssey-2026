@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import anime from 'animejs';
+import { animate, stagger } from 'animejs';
 
 import { Link } from 'react-scroll';
 
@@ -13,6 +13,21 @@ import inventoManiaImg from '../assets/games/invento_mania.png';
 import binaryCodingImg from '../assets/games/binary_coding.png';
 
 // About Section Images
+import dept1 from '../assets/ai_department/dept1_new.jpeg';
+import dept2 from '../assets/ai_department/dept2.jpeg';
+import dept3 from '../assets/ai_department/dept3.jpeg';
+import prev1 from '../assets/previous/prev1.jpeg';
+import prev2 from '../assets/previous/prev2.jpeg';
+import prev3 from '../assets/previous/prev3.jpeg';
+import prev4 from '../assets/previous/prev4.jpeg';
+
+// Sponsor Logos
+import aiOdysseyLogo from '../assets/logos/AI ODYSSEY LOGO.png';
+import beejaLogo from '../assets/logos/beeja_logo.png';
+import campusBodyLogo from '../assets/logos/campus_body_logo.png';
+import ghrceLogo from '../assets/logos/ghrce_logo.png';
+import ieeeCisLogo from '../assets/logos/ieee_cis_logo.png';
+import jarvisLogo from '../assets/logos/jarvis_logo.png';
 
 const MainOverlay = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -25,6 +40,11 @@ const MainOverlay = () => {
 
     // Floating Coming Soon state
     const [comingSoonPos, setComingSoonPos] = useState({ show: false, x: 0, y: 0 });
+
+    // Mobile Menu State
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => setMenuOpen(!menuOpen);
 
     const handleComingSoonClick = (e) => {
         // Prevent default behavior if it's acting as a link
@@ -46,27 +66,24 @@ const MainOverlay = () => {
 
     useEffect(() => {
         // Initial entry animations
-        anime({
-            targets: '.main-content',
+        animate('.main-content', {
             opacity: [0, 1],
             translateY: [50, 0],
             duration: 1200,
-            easing: 'easeOutCubic'
+            easing: 'outCubic'
         });
 
-        anime({
-            targets: '.nav-links li',
+        animate('.nav-links li', {
             opacity: [0, 1],
             translateY: [-20, 0],
-            delay: anime.stagger(100),
+            delay: stagger(100),
             duration: 800
         });
 
-        anime({
-            targets: '.hero-title, .hero-subtitle, .countdown',
+        animate('.hero-title, .hero-subtitle, .countdown', {
             opacity: [0, 1],
             translateY: [30, 0],
-            delay: anime.stagger(200),
+            delay: stagger(200),
             duration: 1000
         });
 
@@ -106,12 +123,11 @@ const MainOverlay = () => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    anime({
-                        targets: entry.target,
+                    animate(entry.target, {
                         opacity: [0, 1],
                         translateY: [50, 0],
                         duration: 1000,
-                        easing: 'easeOutCubic'
+                        easing: 'outCubic'
                     });
                     observer.unobserve(entry.target);
                 }
@@ -137,17 +153,23 @@ const MainOverlay = () => {
             <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
                 <div className="nav-container">
                     <a href="#" className="logo">
-                        <span className="logo-ai">AI</span> ODYSSEY
+                        <img src={aiOdysseyLogo} alt="AI Odyssey" className="nav-logo-img" />
                     </a>
-                    <ul className="nav-links">
-                        <li><Link activeClass="active" to="home" spy={true} smooth={true} offset={-100} duration={500}>Home</Link></li>
-                        <li><Link activeClass="active" to="about" spy={true} smooth={true} offset={-100} duration={500}>About</Link></li>
-                        <li><Link activeClass="active" to="games" spy={true} smooth={true} offset={-100} duration={500}>Games</Link></li>
-                        <li><Link activeClass="active" to="schedule" spy={true} smooth={true} offset={-100} duration={500}>Schedule</Link></li>
-                        <li><Link activeClass="active" to="speakers" spy={true} smooth={true} offset={-100} duration={500}>Speakers</Link></li>
-                        <li><Link activeClass="active" to="sponsors" spy={true} smooth={true} offset={-100} duration={500}>Sponsors</Link></li>
+
+                    <div className={`menu-toggle ${menuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+                        <div className="bar"></div>
+                        <div className="bar"></div>
+                        <div className="bar"></div>
+                    </div>
+
+                    <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+                        <li><Link activeClass="active" to="home" spy={true} smooth={true} offset={-100} duration={500} onClick={() => setMenuOpen(false)}>Home</Link></li>
+                        <li><Link activeClass="active" to="about" spy={true} smooth={true} offset={-100} duration={500} onClick={() => setMenuOpen(false)}>About</Link></li>
+                        <li><Link activeClass="active" to="games" spy={true} smooth={true} offset={-100} duration={500} onClick={() => setMenuOpen(false)}>Games</Link></li>
+                        <li><Link activeClass="active" to="schedule" spy={true} smooth={true} offset={-100} duration={500} onClick={() => setMenuOpen(false)}>Schedule</Link></li>
+                        <li><Link activeClass="active" to="speakers" spy={true} smooth={true} offset={-100} duration={500} onClick={() => setMenuOpen(false)}>Speakers</Link></li>
+                        <li><Link activeClass="active" to="leaderboard" spy={true} smooth={true} offset={-100} duration={500} onClick={() => setMenuOpen(false)}>Leaderboard</Link></li>
                     </ul>
-                    <a href="https://forms.gle/VdYfMQMAQvV512dXA" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Register Now</a>
                 </div>
             </nav>
 
@@ -158,19 +180,19 @@ const MainOverlay = () => {
                     <div className="hero-bg"></div>
                     <div className="container hero-content" style={{ marginTop: '100px' }}>
 
-                        <div className="hero-welcome-wrapper">
+                        <div className="hero-welcome-wrapper" style={{ marginBottom: '25px' }}>
                             <div className="welcome-line"></div>
                             <h2 className="welcome-text">WELCOME TO THE</h2>
                             <div className="welcome-line"></div>
                         </div>
 
-                        <h1 className="hero-title-main">
-                            <span className="ai-text">AI</span>-<span className="odyssey-text">ODYSSEY</span>
-                        </h1>
+                        <div className="hero-logo-wrapper">
+                            <img src={aiOdysseyLogo} alt="AI Odyssey" className="hero-logo-img" />
+                        </div>
 
                         <p className="hero-subtitle">The dawn of a new era. Are you ready to assemble?</p>
 
-                        <div className="countdown" style={{ marginBottom: '80px' }}>
+                        <div className="countdown" style={{ marginBottom: '40px' }}>
                             {['days', 'hours', 'mins', 'secs'].map((unit, idx) => (
                                 <React.Fragment key={unit}>
                                     <div className="time-box">
@@ -180,8 +202,14 @@ const MainOverlay = () => {
                                 </React.Fragment>
                             ))}
                         </div>
+
+                        <div className="hero-cta">
+                            <a href="https://forms.gle/VdYfMQMAQvV512dXA" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">Register Now</a>
+                        </div>
                     </div>
                 </section>
+
+                <div className="section-divider"></div>
 
                 {/* 2. Standalone About Section */}
                 <section id="about" className="about-sequence section" style={{ background: 'transparent', marginTop: '50px', padding: '50px 15px' }}>
@@ -190,13 +218,8 @@ const MainOverlay = () => {
                         {/* 2.1 About AI Odyssey (1 Image) */}
                         <div className="about-block" style={{ marginBottom: '60px' }}>
                             <h2 className="section-title">AI ODYSSEY 2026</h2>
-                            <div className="about-grid">
-                                <div className="about-card" style={{ color: '#ccc', fontSize: '1.2rem', lineHeight: '1.8' }}>
-                                    <p>We are super excited to announce the launch of AI Odyssey 2026 — the ultimate celebration of innovation, creativity, and next-level technology! This isn't just an event; it's a high-energy platform where ideas spark, skills shine, and future tech leaders rise.</p>
-                                </div>
-                                <div className="about-card" style={{ color: '#ccc', fontSize: '1.2rem', lineHeight: '1.8' }}>
-                                    <p>This year, we're turning things up by blending the power of Artificial Intelligence with the thrill of gaming. Expect smart strategies, intense challenges, live competition, and mind-blowing innovation — all packed into one electrifying, action-filled experience.</p>
-                                </div>
+                            <div className="about-block-box">
+                                <p style={{ color: '#ccc', fontSize: '1.2rem', lineHeight: '1.8', textAlign: 'center' }}>AI Odyssey 2026 is an exciting celebration of innovation, creativity, and technology. The event brings together students to showcase their skills, compete in engaging challenges, and explore the power of Artificial Intelligence. This year’s edition blends AI with the thrill of gaming, creating an action-packed platform where strategy, innovation, and competition come together.</p>
                             </div>
                         </div>
 
@@ -204,19 +227,14 @@ const MainOverlay = () => {
                         <div className="about-block" style={{ marginBottom: '60px' }}>
                             <h2 className="section-title">THE AI DEPARTMENT</h2>
                             <div className="about-block-box" style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 25px' }}>
-                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8' }}>The Department of Artificial Intelligence at G.H. Raisoni College of Engineering is a dynamic center of innovation and future-ready education. With a strong focus on Artificial Intelligence, Machine Learning, and emerging technologies, the department equips students with the technical expertise and problem-solving abilities required to address real-world challenges.</p>
+                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8' }}>The Department of Artificial Intelligence at G.H. Raisoni College of Engineering focuses on AI, Machine Learning, and emerging technologies. The department promotes practical learning, research, and participation in national and international competitions. Under the leadership of Dr. Achamma Thomas, it prepares students with strong technical knowledge and problem-solving skills to become future AI professionals.</p>
                             </div>
-                            <div className="about-block-box" style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 30px' }}>
-                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8' }}>Under the leadership of Dr. Achamma Thomas, Head of the Department (HOD), the department promotes hands-on learning, research-oriented projects, and active participation in national and international competitions. By blending strong academic foundations with practical implementation, it prepares students to become confident AI professionals and future innovators.</p>
-                            </div>
-                            <div className="ai-dept-images" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
+                            <div className="ai-dept-images" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '15px' }}>
                                 {[
-                                    'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
-                                ].map((src, i) => (
-                                    <img key={i} src={src} alt="AI Dept" style={{ width: '100%', height: '160px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #333', filter: 'grayscale(0.5) contrast(1.2)' }} />
+                                    { src: dept1, position: 'center' },
+                                    { src: dept3, position: 'center' }
+                                ].map((img, i) => (
+                                    <img key={i} src={img.src} alt="AI Dept" style={{ width: '100%', height: '200px', objectFit: 'cover', objectPosition: img.position, borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 4px 15px rgba(226, 54, 54, 0.2)' }} />
                                 ))}
                             </div>
                         </div>
@@ -225,10 +243,7 @@ const MainOverlay = () => {
                         <div className="about-block" style={{ marginBottom: '60px' }}>
                             <h2 className="section-title">CENTRE OF EXCELLENCE (AIML)</h2>
                             <div className="about-block-box" style={{ maxWidth: '800px', margin: '0 auto 25px' }}>
-                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'center' }}>The Centre of Excellence (CoE) in Artificial Intelligence and Machine Learning at G.H. Raisoni College of Engineering, Nagpur, is a dedicated hub for advanced research, innovation, and industry-focused training. It serves as a platform for implementing best practices, conducting cutting-edge research, and nurturing technical excellence in AI and ML.</p>
-                            </div>
-                            <div className="about-block-box" style={{ maxWidth: '800px', margin: '0 auto' }}>
-                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'center' }}>Equipped with state-of-the-art laboratories and modern resources, the CoE enables students and faculty to work on transformative, real-world projects across diverse domains. By bridging academic knowledge with practical implementation, the Centre empowers learners to develop impactful AI-driven solutions for industry and society.</p>
+                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'center' }}>The Centre of Excellence in AI and ML at G.H. Raisoni College of Engineering is a hub for advanced research, innovation, and industry-oriented learning. With modern labs and resources, it enables students and faculty to work on real-world AI projects while bridging the gap between academic knowledge and practical implementation.</p>
                             </div>
                         </div>
 
@@ -236,10 +251,7 @@ const MainOverlay = () => {
                         <div className="about-block" style={{ marginBottom: '60px' }}>
                             <h2 className="section-title">JARVIS FORUM</h2>
                             <div className="about-block-box" style={{ maxWidth: '800px', margin: '0 auto 25px' }}>
-                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'center' }}>JARVIS is the official student forum of the Department of Artificial Intelligence at G.H. Raisoni College of Engineering, Nagpur. It is dedicated to fostering innovation, creativity, leadership, and technical excellence among students passionate about Artificial Intelligence and emerging technologies.</p>
-                            </div>
-                            <div className="about-block-box" style={{ maxWidth: '800px', margin: '0 auto' }}>
-                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'center' }}>As the driving force behind AI Odyssey, JARVIS provides a dynamic platform for students to engage in competitions, workshops, expert sessions, and hands-on projects. Guided by its inspiring vision of promoting practical implementation over theory, the forum empowers students to collaborate, innovate, and grow into future-ready AI professionals.</p>
+                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'center' }}>JARVIS is the official student forum of the AI Department at G.H. Raisoni College of Engineering. It promotes innovation, leadership, and technical growth through competitions, workshops, and hands-on projects. As the organizer of AI Odyssey, the forum encourages students to collaborate, innovate, and develop practical AI skills.</p>
                             </div>
                         </div>
 
@@ -247,10 +259,7 @@ const MainOverlay = () => {
                         <div className="about-block" style={{ marginBottom: '60px' }}>
                             <h2 className="section-title">IEEE-CIS, GHRCE</h2>
                             <div className="about-block-box" style={{ maxWidth: '800px', margin: '0 auto 25px' }}>
-                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'center' }}>The IEEE Computational Intelligence Society (IEEE CIS) is a global community dedicated to advancing computational intelligence technologies such as neural networks, fuzzy systems, and evolutionary algorithms. It promotes innovation, research, and the practical application of intelligent systems across diverse real-world domains.</p>
-                            </div>
-                            <div className="about-block-box" style={{ maxWidth: '800px', margin: '0 auto' }}>
-                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'center' }}>The IEEE CIS Student Branch Chapter at G.H. Raisoni College of Engineering provides students with a strong platform to explore emerging AI technologies, participate in technical workshops, connect with industry professionals, and develop leadership skills. Through collaborative activities and knowledge-sharing initiatives, the chapter prepares students to excel in the evolving world of Artificial Intelligence and intelligent computing.</p>
+                                <p style={{ color: '#ccc', fontSize: '1.1rem', lineHeight: '1.8', textAlign: 'center' }}>The IEEE Computational Intelligence Society focuses on advancing technologies such as neural networks, fuzzy systems, and evolutionary algorithms. The IEEE CIS Student Chapter at GHRCE provides students opportunities to explore AI technologies, attend workshops, interact with industry experts, and build leadership skills.</p>
                             </div>
                         </div>
 
@@ -258,19 +267,16 @@ const MainOverlay = () => {
                         <div className="about-block">
                             <h2 className="section-title">PREVIOUS AI ODYSSEY</h2>
                             <p className="section-subtitle" style={{ textAlign: 'center' }}>A glimpse into our past triumphs.</p>
-                            <div className="previous-gallery" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
-                                {[
-                                    'https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                                    'https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                                    'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-                                    'https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-                                ].map((src, idx) => (
-                                    <div key={idx} style={{ height: '140px', background: `url('${src}') center/cover`, borderRadius: '8px', border: '1px solid var(--glass-border)', filter: 'grayscale(0.3)' }}></div>
+                            <div className="previous-gallery">
+                                {[prev1, prev2, prev3, prev4].map((src, idx) => (
+                                    <div key={idx} className="prev-img-card" style={{ backgroundImage: `url('${src}')` }}></div>
                                 ))}
                             </div>
                         </div>
                     </div>
                 </section>
+
+                <div className="section-divider"></div>
 
                 {/* 3. Games Section (Sliding format) */}
                 <section id="games" className="games section games-section-container">
@@ -287,13 +293,13 @@ const MainOverlay = () => {
 
                         <div className="games-slider-container">
                             {[
-                                { name: 'Catch the word and win', img: catchWordImg },
-                                { name: 'Quiz', img: quizImg },
-                                { name: 'Treasure Hunt', img: treasureHuntImg },
-                                { name: 'Escape room', img: escapeRoomImg },
-                                { name: 'AI or Not', img: aiOrNotImg },
-                                { name: 'Invento-mania', img: inventoManiaImg },
-                                { name: 'Binary Coding', img: binaryCodingImg }
+                                { name: 'Catch the Word and Win', img: catchWordImg, description: 'Participants search for hidden clues in content to form the correct password. Observation and quick thinking lead to victory.' },
+                                { name: 'Quiz', img: quizImg, description: 'A fast-paced quiz testing knowledge of Artificial Intelligence and technology. Speed and accuracy determine the winners.' },
+                                { name: 'Treasure Hunt', img: treasureHuntImg, description: 'A campus adventure where teams scan QR codes, decode clues, and solve puzzles to reach the final treasure.' },
+                                { name: 'Escape Room', img: escapeRoomImg, description: 'Participants solve puzzles and clues under pressure to unlock stages and escape within the given time.' },
+                                { name: 'AI or Not', img: aiOrNotImg, description: 'Players guess whether a creation is AI-generated or human-made and earn points for correct answers.' },
+                                { name: 'Invento-Mania', img: inventoManiaImg, description: 'A Shark Tank–style competition where participants pitch AI-based solutions to real-world problems.' },
+                                { name: 'Binary Coding', img: binaryCodingImg, description: 'Participants convert given data into binary within a time limit, testing speed and technical accuracy.' }
                             ].map((game, idx) => (
                                 <div className="game-glass-card" key={idx}>
                                     <div className="game-card-img-container">
@@ -301,6 +307,7 @@ const MainOverlay = () => {
                                     </div>
                                     <div className="game-card-info">
                                         <h3>{game.name}</h3>
+                                        <p style={{ fontSize: '0.9rem', color: '#bbb', marginBottom: '15px', lineHeight: '1.4' }}>{game.description}</p>
                                         <div className="game-card-actions" style={{ justifyContent: 'center' }}>
                                             <button className="btn btn-outline" onClick={handleComingSoonClick}>Rule Book</button>
                                         </div>
@@ -309,10 +316,12 @@ const MainOverlay = () => {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section >
+
+                <div className="section-divider"></div>
 
                 {/* 4. Schedule Section (Infinity Stones) */}
-                <section id="schedule" className="schedule section" style={{ background: 'transparent' }}>
+                < section id="schedule" className="schedule section" style={{ background: 'transparent' }}>
                     <div className="container" style={{ textAlign: 'center' }}>
                         <h2 className="section-title">Infinity Stone <span>Schedule</span></h2>
                         <p className="section-subtitle">Trace the timeline of the Odyssey.</p>
@@ -323,10 +332,10 @@ const MainOverlay = () => {
                                 { name: "Space", color: "#1E88E5", event: "Registration Begins", time: "09:00 AM" },
                                 { name: "Mind", color: "#FFD54F", event: "Inauguration Ceremony", time: "09:30 AM - 10:30 AM" },
                                 { name: "Reality", color: "#E53935", event: "Speaker Workshop Session", time: "10:30 AM - 12:00PM" },
-                                { name: "Power", color: "#8E24AA", event: <>Games Session (2 Game)<br /><span className="game-subtext">Binary Code<br />Quiz</span></>, time: "12:00 PM - 01:00 AM" },
+                                { name: "Power", color: "#8E24AA", event: <>Games session<br /><span className="game-subtext">Binary code<br />quiz</span></>, time: "12:00 PM - 01:00 AM" },
                                 { name: "Time", color: "#43A047", event: "Lunch Break", time: "01:00 PM - 01:45 PM" },
-                                { name: "Soul", color: "#FB8C00", event: <>Games Session (2 Game)<br /><span className="game-subtext">1. Shark Tank (Rounds 1: PPT Shortlisting<br />Round 2: Pitch)<br />2. Escape Room</span></>, time: "01:45 PM - 03:45 PM" },
-                                { name: "Space", color: "#1E88E5", event: <>Games Session (2 Game)<br /><span className="game-subtext">1. AI Or Not<br />2. Find The Word &amp; Win Points</span></>, time: "3:45 PM - 04:30 PM" },
+                                { name: "Soul", color: "#FB8C00", event: <>Games session<br /><span className="game-subtext" style={{ textAlign: "left", display: "inline-block" }}>1. Shark Tank<br />&nbsp;&nbsp;&nbsp;Round 1: PPT Shortlisting<br />&nbsp;&nbsp;&nbsp;Round 2: Pitch<br />2. Escape Room</span></>, time: "01:45 PM - 03:45 PM" },
+                                { name: "Space", color: "#1E88E5", event: <>Games session<br /><span className="game-subtext">1. AI Or Not<br />2. Find The Word &amp; Win Points</span></>, time: "3:45 PM - 04:30 PM" },
                                 { name: "Mind", color: "#FFD54F", event: "Treasure Hunt", time: "04:30 PM - 05:30 PM" },
                                 { name: "Reality", color: "#E53935", event: "Prize Distribution & Closing Ceremony", time: "5:30 PM" }
                             ].map((stone, idx) => (
@@ -343,54 +352,96 @@ const MainOverlay = () => {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section >
+
+                <div className="section-divider"></div>
 
                 {/* 4.5 Speakers Section */}
-                <section id="speakers" className="speakers section">
+                < section id="speakers" className="speakers section" >
                     <div className="container" style={{ textAlign: 'center' }}>
                         <h2 className="section-title" style={{ fontFamily: "'American Captain', sans-serif", background: 'linear-gradient(to bottom, #8ca8c4 0%, #4a6fa5 50%, #1c3d6e 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', WebkitTextStroke: '1px #b0b5b9', filter: 'drop-shadow(0 0 10px rgba(74, 111, 165, 0.4))' }}>Our <span>Speakers</span></h2>
                         <p className="section-subtitle">Insights from industry leaders.</p>
 
-                        <div className="speakers-grid" style={{ display: 'flex', justifyContent: 'center', gap: '30px', marginTop: '40px' }}>
+                        <div className="speakers-grid">
                             {[1, 2].map((_, idx) => (
-                                <div className="speaker-card" key={idx} style={{ flex: '1', maxWidth: '400px', padding: '50px 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, rgba(200, 204, 208, 0.15), rgba(135, 140, 145, 0.25), rgba(100, 105, 110, 0.15))', border: '1px solid rgba(135, 140, 145, 0.5)', boxShadow: '0 0 20px rgba(135, 140, 145, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', borderRadius: '15px' }}>
+                                <div className="speaker-card" key={idx}>
                                     <h3 className="sparkle-text" style={{ fontFamily: "var(--font-heading)", fontSize: '3rem', letterSpacing: '3px', margin: 0 }}>COMING SOON</h3>
                                 </div>
                             ))}
                         </div>
                     </div>
-                </section>
+                </section >
 
-                {/* 5. Sponsors Section (Moved up) */}
-                <section id="sponsors" className="sponsors section" style={{ paddingBottom: '100px', minHeight: '100vh' }}>
+                <div className="section-divider"></div>
+
+                <section id="leaderboard" className="leaderboard section" style={{ padding: '60px 15px 40px' }}>
                     <div className="container" style={{ textAlign: 'center' }}>
-                        <h2 className="section-title" style={{ fontFamily: "'American Captain', sans-serif", background: 'linear-gradient(to bottom, #8ca8c4 0%, #4a6fa5 50%, #1c3d6e 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', WebkitTextStroke: '1px #b0b5b9', filter: 'drop-shadow(0 0 10px rgba(74, 111, 165, 0.4))' }}>OUR <span>SPONSORS</span></h2>
-                        <p className="section-subtitle">The visionaries backing our initiative.</p>
-                        <div className="sponsors-grid" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '40px' }}>
-                            {[...Array(5)].map((_, idx) => (
-                                <div key={idx} style={{ width: '200px', height: '120px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #333', fontSize: '1.2rem', color: 'var(--silver)', fontWeight: 'bold', backdropFilter: 'blur(5px)' }}>
-                                    <span className="sparkle-text" style={{ fontSize: '1.5rem', letterSpacing: '2px' }}>COMING SOON</span>
-                                </div>
-                            ))}
+                        {/* Final CTA Button */}
+                        <div className="leaderboard-cta" style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', width: '100%' }}>
+                            <button onClick={handleComingSoonClick} className="btn btn-primary btn-leaderboard">
+                                Leaderboard
+                            </button>
                         </div>
                     </div>
                 </section>
-            </div>
+
+                <div className="section-divider"></div>
+
+                {/* Sponsors / Partners Section */}
+                <section id="sponsors" className="sponsors-section section">
+                    <div className="container" style={{ textAlign: 'center' }}>
+                        <h2 className="section-title sponsors-title">OUR <span>PARTNERS</span></h2>
+                        <p className="section-subtitle">Proudly supported by our amazing partners.</p>
+
+                        {/* Row 1: Beeja + Campus Body */}
+                        <div className="sponsors-logos-row">
+                            <div className="sponsor-logo-card sponsor-dark">
+                                <img src={beejaLogo} alt="Beeja" className="sponsor-logo-img" />
+                            </div>
+                            <div className="sponsor-logo-card sponsor-light">
+                                <img src={campusBodyLogo} alt="Campus Body RBU" className="sponsor-logo-img" />
+                            </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="sponsors-divider">
+                            <div className="sponsors-divider-line"></div>
+                            <span className="sponsors-divider-label">IN ASSOCIATION WITH</span>
+                            <div className="sponsors-divider-line"></div>
+                        </div>
+
+                        {/* Row 2: IEEE CIS + GHRCE (middle) + JARVIS */}
+                        <div className="sponsors-logos-row">
+                            <div className="sponsor-logo-card sponsor-light">
+                                <img src={ieeeCisLogo} alt="IEEE Computational Intelligence Society" className="sponsor-logo-img" />
+                            </div>
+                            <div className="sponsor-logo-card sponsor-light">
+                                <img src={ghrceLogo} alt="GH Raisoni College of Engineering" className="sponsor-logo-img" />
+                            </div>
+                            <div className="sponsor-logo-card sponsor-dark">
+                                <img src={jarvisLogo} alt="JARVIS - Empowered by Innovation" className="sponsor-logo-img" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div >
 
             {/* Floating Coming Soon Message - Moved absolutely outside to prevent clipping */}
-            {comingSoonPos.show && (
-                <div
-                    className="floating-coming-soon"
-                    style={{
-                        left: comingSoonPos.x,
-                        top: comingSoonPos.y
-                    }}
-                >
-                    COMING SOON
-                </div>
-            )}
+            {
+                comingSoonPos.show && (
+                    <div
+                        className="floating-coming-soon"
+                        style={{
+                            left: comingSoonPos.x,
+                            top: comingSoonPos.y
+                        }}
+                    >
+                        COMING SOON
+                    </div>
+                )
+            }
         </>
     );
-};
+}
 
 export default MainOverlay;
