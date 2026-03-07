@@ -35,6 +35,8 @@ import campusBodyLogo from '../assets/logos/campus_body_logo.png';
 import ghrceLogo from '../assets/logos/ghrce_logo.png';
 import ieeeCisLogo from '../assets/logos/ieee_cis_logo.png';
 import jarvisLogo from '../assets/logos/jarvis_logo.png';
+import shakalShuklaImg from '../assets/speakers/shakal_shukla.png';
+
 
 const MainOverlay = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -439,12 +441,54 @@ const MainOverlay = () => {
                         <h2 className="section-title" style={{ fontFamily: "'American Captain', sans-serif", background: 'linear-gradient(to bottom, #8ca8c4 0%, #4a6fa5 50%, #1c3d6e 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', WebkitTextStroke: '1px #b0b5b9', filter: 'drop-shadow(0 0 10px rgba(74, 111, 165, 0.4))' }}>Our <span>Speakers</span></h2>
                         <p className="section-subtitle">Insights from industry leaders.</p>
 
-                        <div className="speakers-grid">
-                            {[1].map((_, idx) => (
-                                <div className="speaker-card" key={idx}>
-                                    <h3 className="sparkle-text" style={{ fontFamily: "var(--font-heading)", fontSize: '3rem', letterSpacing: '3px', margin: 0 }}>COMING SOON</h3>
+                        <div className="dossier-wrapper">
+                            <div className="dossier-card">
+                                <div className="dossier-header">
+                                    <div className="dossier-logo">
+                                        <img src={aiOdysseyLogo} alt="Logo" />
+                                    </div>
+                                    <div className="dossier-title" style={{ textAlign: "left" }}>
+                                        <h2>SHAKAL SHUKLA</h2>
+                                        <h3>Agile Coach | Project & Product Management Leader</h3>
+                                    </div>
                                 </div>
-                            ))}
+                                <div className="dossier-body">
+                                    <div className="dossier-details" style={{ textAlign: "left" }}>
+                                        <div className="dossier-info-row">
+                                            <span className="dossier-label">EXPERIENCE</span>
+                                            <span className="dossier-value">22+ Years</span>
+                                        </div>
+                                        <div className="dossier-info-row">
+                                            <span className="dossier-label">KEY EXPERTISE</span>
+                                            <ul className="dossier-list">
+                                                <li>Scrum & Process Management</li>
+                                                <li>Project & Product Management</li>
+                                                <li>Process Compliance (ISO, CMMI)</li>
+                                                <li>Global Project Delivery</li>
+                                                <li>Business Growth & Pre-Sales</li>
+                                            </ul>
+                                        </div>
+                                        <div className="dossier-info-row" style={{ borderBottom: "none" }}>
+                                            <span className="dossier-label">KEY HIGHLIGHTS</span>
+                                            <ul className="dossier-list highlights-list">
+                                                <li>Agile Coach & Process Champion</li>
+                                                <li>22+ Years of Experience in Project & Product Management</li>
+                                                <li>Certified Scrum Master – Persistent Systems</li>
+                                                <li>Expert in Process Compliance (ISO & CMMI Audits)</li>
+                                                <li>Led Global Cross-Functional Teams</li>
+                                                <li>Delivered Projects Across US, UK, South East Asia & South Africa</li>
+                                                <li>Specialist in Project Delivery within Budget & Time</li>
+                                                <li>Pre-Sales & Business Growth Strategist</li>
+                                                <li>Strong Customer Relationship & Global Networking</li>
+                                                <li>Expertise in Data-Driven Decision Making</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className="dossier-image-container">
+                                        <img src={shakalShuklaImg} alt="Shakal Shukla" className="dossier-image" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section >
