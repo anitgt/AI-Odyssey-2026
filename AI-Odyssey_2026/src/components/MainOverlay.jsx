@@ -35,6 +35,7 @@ import campusBodyLogo from '../assets/logos/campus_body_logo.png';
 import ghrceLogo from '../assets/logos/ghrce_logo.png';
 import ieeeCisLogo from '../assets/logos/ieee_cis_logo.png';
 import jarvisLogo from '../assets/logos/jarvis_logo.png';
+import mlNagpurLogo from '../assets/logos/ml_nagpur.png';
 import shakalShuklaImg from '../assets/speakers/shakal_shukla.png';
 
 
@@ -514,10 +515,13 @@ const MainOverlay = () => {
                         <h2 className="section-title sponsors-title">OUR <span>PARTNERS</span></h2>
                         <p className="section-subtitle">Proudly supported by our amazing partners.</p>
 
-                        {/* Row 1: Beeja */}
+                        {/* Row 1: Beeja + ML Nagpur */}
                         <div className="sponsors-logos-row">
                             <div className="sponsor-logo-card sponsor-dark">
                                 <img src={beejaLogo} alt="Beeja" className="sponsor-logo-img" />
+                            </div>
+                            <div className="sponsor-logo-card sponsor-dark">
+                                <img src={mlNagpurLogo} alt="ML Nagpur" className="sponsor-logo-img" />
                             </div>
                         </div>
 
