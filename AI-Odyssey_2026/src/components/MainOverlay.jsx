@@ -500,9 +500,9 @@ const MainOverlay = () => {
                     <div className="container" style={{ textAlign: 'center' }}>
                         {/* Final CTA Button */}
                         <div className="leaderboard-cta" style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', width: '100%' }}>
-                            <button onClick={handleComingSoonClick} className="btn btn-primary btn-leaderboard">
+                            <a href="https://ai-odyssey-26-leaderboard-production.up.railway.app/leaderboard" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-leaderboard">
                                 Leaderboard
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </section>
