@@ -10,6 +10,7 @@ import quizImg from '../assets/games/quiz.png';
 import treasureHuntImg from '../assets/games/treasure_hunt.png';
 import escapeRoomImg from '../assets/games/escape_room.png';
 import aiOrNotImg from '../assets/games/ai_or_not.png';
+import promptCraftImg from '../assets/games/prompt_craft.png';
 
 // Infinity Stones
 import soulStone from '../assets/stones/soul stone.jpg';
@@ -378,7 +379,8 @@ const MainOverlay = () => {
                                     { name: 'Hunters Grid', img: treasureHuntImg, description: 'A campus adventure where teams scan QR codes, decode clues, and solve puzzles to reach the final treasure.' },
                                     { name: 'Escape Room', img: escapeRoomImg, description: 'Participants solve puzzles and clues under pressure to unlock stages and escape within the given time.' },
                                     { name: 'Bot or Not', img: aiOrNotImg, description: 'Players guess whether a creation is AI-generated or human-made and earn points for correct answers.' },
-                                    { name: 'Rise of AI', img: inventoManiaImg, description: 'A Shark Tank–style competition where participants pitch AI-based solutions to real-world problems.' }
+                                    { name: 'Prompt Craft', img: promptCraftImg, description: 'Master the art of communication with AI. Participants compete to create the most effective prompts to solve complex challenges and generate precise outputs.' },
+                                    { name: 'Invento-mania: The Rise of AI', img: inventoManiaImg, description: 'A Shark Tank–style competition where participants pitch AI-based solutions to real-world problems.' }
                                 ].map((game, idx) => (
                                     <div className="game-glass-card" key={idx}>
                                         <div className="game-card-img-container">
@@ -411,13 +413,13 @@ const MainOverlay = () => {
                             {[
                                 { name: "Space", color: "#1E88E5", event: "Registration Begins", time: "09:00 AM" },
                                 { name: "Mind", color: "#FFD54F", event: "Inauguration Ceremony", time: "09:30 AM - 10:30 AM" },
-                                { name: "Reality", color: "#E53935", event: "Speaker Workshop Session", time: "10:30 AM - 12:00PM" },
-                                { name: "Power", color: "#8E24AA", event: <>Games session<br /><span className="game-subtext">Infinity IQ</span></>, time: "12:00 PM - 01:00 AM" },
+                                { name: "Reality", color: "#E53935", event: "Speaker Session", time: "10:30 AM - 12:00 PM" },
+                                { name: "Power", color: "#8E24AA", event: <>Games session 1<br /><span className="game-subtext">Prompt Craft & Infinity IQ</span></>, time: "12:00 PM - 01:00 PM" },
                                 { name: "Time", color: "#43A047", event: "Lunch Break", time: "01:00 PM - 01:45 PM" },
-                                { name: "Soul", color: "#FB8C00", event: <>Games session<br /><span className="game-subtext" style={{ textAlign: "left", display: "inline-block" }}>1. Rise of AI<br />&nbsp;&nbsp;&nbsp;Round 1: PPT Shortlisting<br />&nbsp;&nbsp;&nbsp;Round 2: Pitch<br />2. Escape Room</span></>, time: "01:45 PM - 03:45 PM" },
-                                { name: "Space", color: "#1E88E5", event: <>Games session<br /><span className="game-subtext">1. Bot or Not<br />2. Hunt the Hint</span></>, time: "3:45 PM - 04:30 PM" },
-                                { name: "Mind", color: "#FFD54F", event: "Hunters Grid", time: "04:30 PM - 05:30 PM" },
-                                { name: "Reality", color: "#E53935", event: "Prize Distribution & Closing Ceremony", time: "5:30 PM" }
+                                { name: "Soul", color: "#FB8C00", event: <>Games session 2<br /><span className="game-subtext" style={{ whiteSpace: 'nowrap' }}>Invento-mania: The Rise of AI & Escape Room</span></>, time: "01:45 PM - 03:45 PM" },
+                                { name: "Space", color: "#1E88E5", event: <>Games session 3<br /><span className="game-subtext">Bot or Not & Hunter Grid</span></>, time: "03:45 PM - 04:30 PM" },
+                                { name: "Mind", color: "#FFD54F", event: <>Games session 4<br /><span className="game-subtext">Treasure Hunt</span></>, time: "04:30 PM - 05:30 PM" },
+                                { name: "Reality", color: "#E53935", event: "Prize Distribution & Closing Ceremony", time: "05:30 PM" }
                             ].map((stone, idx) => (
                                 <div className="timeline-item" key={idx}>
                                     <div className="stone-wrapper">
