@@ -417,8 +417,8 @@ const MainOverlay = () => {
                                 { name: "Power", color: "#8E24AA", event: <>Games session 1<br /><span className="game-subtext">Prompt Craft & Infinity IQ</span></>, time: "12:00 PM - 01:00 PM" },
                                 { name: "Time", color: "#43A047", event: "Lunch Break", time: "01:00 PM - 01:45 PM" },
                                 { name: "Soul", color: "#FB8C00", event: <>Games session 2<br /><span className="game-subtext" style={{ whiteSpace: 'nowrap' }}>Invento-mania: The Rise of AI & Escape Room</span></>, time: "01:45 PM - 03:45 PM" },
-                                { name: "Space", color: "#1E88E5", event: <>Games session 3<br /><span className="game-subtext">Bot or Not & Hunter Grid</span></>, time: "03:45 PM - 04:30 PM" },
-                                { name: "Mind", color: "#FFD54F", event: <>Games session 4<br /><span className="game-subtext">Treasure Hunt</span></>, time: "04:30 PM - 05:30 PM" },
+                                { name: "Space", color: "#1E88E5", event: <>Games session 3<br /><span className="game-subtext">Bot or Not & Hunt the Hint</span></>, time: "03:45 PM - 04:30 PM" },
+                                { name: "Mind", color: "#FFD54F", event: <>Games session 4<br /><span className="game-subtext">Hunters Grid</span></>, time: "04:30 PM - 05:30 PM" },
                                 { name: "Reality", color: "#E53935", event: "Prize Distribution & Closing Ceremony", time: "05:30 PM" }
                             ].map((stone, idx) => (
                                 <div className="timeline-item" key={idx}>
