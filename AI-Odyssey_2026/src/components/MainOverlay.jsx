@@ -225,7 +225,7 @@ const MainOverlay = () => {
                         </div>
 
                         <div className="hero-cta">
-                            <a href="https://forms.gle/VdYfMQMAQvV512dXA" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">Register Now</a>
+                            <button className="btn btn-primary btn-lg btn-disabled" disabled>Registration Closed!</button>
                         </div>
                     </div>
                 </section>
