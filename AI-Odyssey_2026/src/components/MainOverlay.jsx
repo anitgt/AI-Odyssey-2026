@@ -4,13 +4,13 @@ import { animate, stagger } from 'animejs';
 import { Link } from 'react-scroll';
 
 // Game Images
-import inventoManiaImg from '../assets/games/invento_mania.png';
-import catchWordImg from '../assets/games/catch_word.png';
+import inventoManiaImg from '../assets/games/invento_mania_new.png';
+import huntTheHintImg from '../assets/games/hunt_the_hint.png';
 import quizImg from '../assets/games/quiz.png';
-import treasureHuntImg from '../assets/games/treasure_hunt.png';
-import escapeRoomImg from '../assets/games/escape_room.png';
-import aiOrNotImg from '../assets/games/ai_or_not.png';
-import promptCraftImg from '../assets/games/prompt_craft.png';
+import huntersGridImg from '../assets/games/hunters_grid.png';
+import escapeRoomImg from '../assets/games/escape_room_new.jpg';
+import aiOrNotImg from '../assets/games/bot_or_not.jpg';
+import promptCraftImg from '../assets/games/prompt_craft_new.jpg';
 
 // Infinity Stones
 import soulStone from '../assets/stones/soul stone.jpg';
@@ -374,13 +374,13 @@ const MainOverlay = () => {
 
                             <div className="games-slider-container" ref={gamesSliderRef}>
                                 {[
-                                    { name: 'Hunt the Hint', img: catchWordImg, description: 'Participants search for hidden clues in content to form the correct password. Observation and quick thinking lead to victory.' },
-                                    { name: 'Infinity IQ', img: quizImg, description: 'A fast-paced quiz testing knowledge of Artificial Intelligence and technology. Speed and accuracy determine the winners.' },
-                                    { name: 'Hunters Grid', img: treasureHuntImg, description: 'A campus adventure where teams scan QR codes, decode clues, and solve puzzles to reach the final treasure.' },
-                                    { name: 'Escape Room', img: escapeRoomImg, description: 'Participants solve puzzles and clues under pressure to unlock stages and escape within the given time.' },
-                                    { name: 'Bot or Not', img: aiOrNotImg, description: 'Players guess whether a creation is AI-generated or human-made and earn points for correct answers.' },
-                                    { name: 'Prompt Craft', img: promptCraftImg, description: 'Master the art of communication with AI. Participants compete to create the most effective prompts to solve complex challenges and generate precise outputs.' },
-                                    { name: 'Invento-mania: The Rise of AI', img: inventoManiaImg, description: 'A Shark Tank–style competition where participants pitch AI-based solutions to real-world problems.' }
+                                    { name: 'Hunt the Hint', img: huntTheHintImg, description: 'Participants search for hidden clues in content to form the correct password. Observation and quick thinking lead to victory.', rulebook: 'https://drive.google.com/file/d/11Xkn77SSi69NhZiPNySruIgWeP6IMJak/view?usp=drive_link' },
+                                    { name: 'Infinity IQ', img: quizImg, description: 'A fast-paced quiz testing knowledge of Artificial Intelligence and technology. Speed and accuracy determine the winners.', rulebook: 'https://drive.google.com/file/d/1Bo60mqsDerWMnkSpR1wn_OlI_2_WSJEQ/view?usp=drive_link' },
+                                    { name: 'Hunters Grid', img: huntersGridImg, description: 'A campus adventure where teams scan QR codes, decode clues, and solve puzzles to reach the final treasure.', rulebook: 'https://drive.google.com/file/d/1l2ndZJzmTx_YS3x25t0mBYTM1l6pj-sj/view?usp=drive_link' },
+                                    { name: 'Escape Room', img: escapeRoomImg, description: 'Participants solve puzzles and clues under pressure to unlock stages and escape within the given time.', rulebook: 'https://drive.google.com/file/d/1sjsIeAxQciEJSVyspYWIibsMKiIvb0tT/view?usp=drive_link' },
+                                    { name: 'Bot or Not', img: aiOrNotImg, description: 'Players guess whether a creation is AI-generated or human-made and earn points for correct answers.', rulebook: 'https://drive.google.com/file/d/1bHg0lO339n_NHNFHeo9oQ6ZSvU94uH6v/view?usp=drive_link' },
+                                    { name: 'Prompt Craft', img: promptCraftImg, description: 'Master the art of communication with AI. Participants compete to create the most effective prompts to solve complex challenges and generate precise outputs.', rulebook: 'https://drive.google.com/file/d/1ycAPwTdsoEFhxMwLz6COocVNFuhptY2h/view?usp=drive_link' },
+                                    { name: 'Invento-mania: The Rise of AI', img: inventoManiaImg, description: 'A Shark Tank–style competition where participants pitch AI-based solutions to real-world problems.', rulebook: 'https://drive.google.com/file/d/1bfCfCK3Nmy9MfvO05Vt0Bo4a_YmPInA2/view?usp=drive_link' }
                                 ].map((game, idx) => (
                                     <div className="game-glass-card" key={idx}>
                                         <div className="game-card-img-container">
@@ -390,7 +390,7 @@ const MainOverlay = () => {
                                             <h3>{game.name}</h3>
                                             <p style={{ fontSize: '0.9rem', color: '#bbb', marginBottom: '15px', lineHeight: '1.4' }}>{game.description}</p>
                                             <div className="game-card-actions" style={{ justifyContent: 'center' }}>
-                                                <button className="btn btn-outline" onClick={handleComingSoonClick}>Rule Book</button>
+                                                <a href={game.rulebook} target="_blank" rel="noopener noreferrer" className="btn btn-outline">Rule Book</a>
                                             </div>
                                         </div>
                                     </div>
